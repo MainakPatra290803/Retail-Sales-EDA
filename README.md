@@ -1,9 +1,5 @@
 # 🛒 Retail Sales EDA (Sample Superstore Dataset)
 
-![Retail Banner](https://i.imgur.com/m63hK6F.png)
-
----
-
 ## 📌 Project Overview  
 
 This project performs a **comprehensive Exploratory Data Analysis (EDA)** on the **Sample Superstore dataset**, a widely used dataset in analytics and data science.  
