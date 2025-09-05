@@ -1,105 +1,177 @@
-# 🛒 Advanced Retail Sales EDA (Superstore Dataset)
+# 🛒 Retail Sales EDA (Sample Superstore Dataset)
 
-## 📌 Project Overview
-This project performs **Exploratory Data Analysis (EDA)** on the **Sample Superstore dataset**, a popular dataset for retail analytics.  
-The goal is to extract actionable insights, detect patterns, and demonstrate data analysis skills using Python.  
-The analysis includes:
-- Data cleaning & preprocessing
-- Exploratory statistics
-- Outlier detection (IQR & boxplots)
-- Correlation analysis
-- Probability distributions (Normal, Binomial, Poisson)
-- Hypothesis testing (Manual ANOVA)
-- Business insights with visualizations
-
-This project is designed as a **resume-quality portfolio project** to showcase end-to-end data analysis capability.
+![Retail Banner](https://i.imgur.com/m63hK6F.png)
 
 ---
 
-## 📂 Dataset
-- **Name**: `SampleSuperstore.csv`
-- **Source**: Kaggle / Tableau sample dataset
-- **Rows**: ~10,000 orders
-- **Columns**:
-  - Categorical: Category, Sub-Category, Region, State, Segment, Ship Mode
-  - Numerical: Sales, Profit, Quantity, Discount
-  - Dates: Order Date, Ship Date
+## 📌 Project Overview  
+
+This project performs a **comprehensive Exploratory Data Analysis (EDA)** on the **Sample Superstore dataset**, a widely used dataset in analytics and data science.  
+
+The goal is **not just visualization**, but also:  
+- Identifying **business problems**  
+- Applying **statistical methods** (IQR, ANOVA, hypothesis testing)  
+- Modeling **uncertainty using probability distributions**  
+- Delivering **actionable business insights**  
+
+This project is structured like a **real data science workflow** and is designed to be **resume-quality**.
 
 ---
 
-## ⚙️ Tech Stack
-- **Language**: Python 3.x  
-- **Libraries**:
-  - `pandas` → data manipulation
-  - `numpy` → numerical calculations
-  - `matplotlib`, `seaborn` → visualization
-- No external statistical libraries (like `scipy`) were used — all tests (ANOVA, IQR) were coded manually.
+## 🎯 Project Objectives  
+
+We aim to answer critical **business questions**:  
+
+1. Which categories and sub-categories are most profitable?  
+2. How do discounts impact profitability?  
+3. Which regions and states contribute most to sales and profit?  
+4. Do shipping modes affect profitability and customer satisfaction?  
+5. Are there seasonal or yearly sales patterns?  
+6. Where are the biggest risks of losses (products, locations, discounts)?  
+7. Can inferential statistics validate group differences?  
+8. How can probability distributions model business events?  
 
 ---
 
-## 📊 Analysis Workflow
-### **0. CONFIG**
-- Import libraries, set visualization style, create output directory
+## 📂 Project Workflow (Step-by-Step)
 
-### **1. Load Data**
-- Read `SampleSuperstore.csv`
-- Standardize column names
-- Convert date fields and numeric columns
-
-### **2. Data Cleaning**
-- Handle duplicates
-- Check and handle missing values
-- Create derived features:
-  - Profit Margin
-  - Ship Delay (days)
-  - Year, Month, Weekday, Quarter from Order Date
-
-### **3. Descriptive Statistics**
-- Dataset overview (shape, datatypes, summary stats)
-- Frequency distributions of key columns
-
-### **4. Outlier Detection**
-- **IQR Method** for numerical columns
-- **Boxplots** for Sales, Profit, Profit Margin, Revenue per Unit
-- Mark and count outliers
-
-### **5. Correlation Analysis**
-- Heatmap of numerical features (Sales, Profit, Discount, Quantity, Profit Margin)
-
-### **6. Probability Distributions**
-- **Normal Distribution**: Sales & Profit histograms with KDE
-- **Binomial Distribution**: Probability of Profit vs Loss orders
-- **Poisson Distribution**: Orders per day
-
-### **7. Business Insights (Visual EDA)**
-- Sales & Profit trends (Yearly, Monthly, Quarterly)
-- Region & Category performance
-- State-wise Top & Bottom performers
-- Sub-Category sales/profit breakdown
-- Discount impact on Profit Margin
-- Shipping delay analysis
-
-### **8. Hypothesis Testing**
-- **Manual ANOVA**: Test if Profit differs significantly across Regions
-- Effect size calculated via **eta-squared**
+### **1️⃣ Import Libraries & Configuration**  
+- `pandas` → data manipulation  
+- `numpy` → numerical calculations  
+- `matplotlib`, `seaborn` → visualization  
+- Set seaborn style for better aesthetics  
 
 ---
 
-## 📌 Key Insights
-- High discounts reduce profit margins drastically.  
-- Some sub-categories (e.g., Tables, Bookcases) are loss-making despite high sales.  
-- The South region shows lower average profit compared to others.  
-- Profitability varies strongly across product categories and regions.  
-- Shipping delays vary slightly by region but are generally within a few days.  
+### **2️⃣ Load & Explore Data**  
+- Load dataset (`SampleSuperstore.csv`)  
+- Normalize column names  
+- Check shape, datatypes, head, duplicates, and missing values  
+
+📸 *Example:* Head of dataset  
 
 ---
 
-## 📷 Sample Visualizations
-- Correlation Heatmap  
-- Boxplot of Profit Margin by Category  
-- Sales vs Profit Scatterplot  
-- Profitability vs Discounts (Binomial Model)  
-- Orders per Day Distribution (Poisson Model)  
+### **3️⃣ Data Cleaning & Feature Engineering**  
+- Handle missing values  
+- Drop duplicates  
+- Convert `order_date` and `ship_date` to datetime  
+- Feature engineering:  
+  - `year`, `month`, `weekday`, `quarter`  
+  - `profit_margin = profit / sales`  
+  - `ship_delay_days = ship_date - order_date`  
+
+📸 *Example:* Missing value heatmap  
+
+---
+
+### **4️⃣ Descriptive Statistics**  
+- Summary stats (mean, median, mode, std)  
+- Understand sales, profit, discount, and quantity distributions  
+
+📸 *Example:* Table of descriptive stats  
+
+---
+
+### **5️⃣ Outlier Detection (IQR + Boxplots)**  
+- Compute Q1, Q3, IQR for numeric variables  
+- Identify outliers as values outside `[Q1 - 1.5×IQR, Q3 + 1.5×IQR]`  
+- Plot boxplots to visualize outliers  
+
+📸 *Example:* Boxplot of Sales by Category  
+
+---
+
+### **6️⃣ Univariate & Bivariate Analysis**  
+- Histograms for **Sales** and **Profit** distributions  
+- Scatterplot of **Discount vs Profit**  
+- Countplots for **Category** and **Region**  
+
+📸 *Example:* Histogram of Sales  
+
+---
+
+### **7️⃣ Correlation Analysis**  
+- Correlation heatmap among numeric variables  
+- Insights:  
+  - Discounts strongly reduce profit  
+  - Sales and profit only moderately correlated  
+
+📸 *Example:* Correlation Heatmap  
+
+---
+
+### **8️⃣ Inferential Statistics**  
+
+#### **a. Hypothesis Testing**  
+- Hypothesis: Do discounts significantly reduce profits?  
+- Compare average profit for orders with vs without discount  
+
+#### **b. ANOVA (Manual)**  
+- Test whether mean profit differs significantly across **regions**  
+- Compute F-statistic and effect size (η²)  
+
+📸 *Example:* ANOVA summary table  
+
+---
+
+### **9️⃣ Probability Distributions**  
+
+- **Normal Distribution** → Fit Sales & Profit  
+- **Binomial Distribution** → Probability of order being profitable  
+- **Poisson Distribution** → Model number of orders per day  
+
+📸 *Example:* Sales Histogram with Normal Fit  
+
+---
+
+### **🔟 Business Insights (from Analysis)**  
+
+✔ **Category-Level**  
+- Technology → highest profits  
+- Furniture → high sales but lower profitability  
+
+✔ **Discount Impact**  
+- High discounts often → losses  
+- Optimal discount strategy needed  
+
+✔ **Regional Performance**  
+- West → highest revenue & profit  
+- Central → inconsistent performance  
+
+✔ **Shipping Modes**  
+- Same-day shipping → costly, less profitable  
+- Standard shipping → most balanced  
+
+✔ **Geographic Risk**  
+- Profits concentrated in few states (CA, NY)  
+- Expansion opportunities in low-performing regions  
+
+📸 *Example:* State-wise Profit Heatmap  
+
+---
+
+### **1️⃣1️⃣ Extended Business Insights**  
+
+- **Top States by Sales** → CA, NY lead the market  
+- **Sub-Categories** → Phones & Chairs drive revenue, but Chairs often unprofitable  
+- **Yearly Trends** → Steady sales growth with seasonal peaks  
+- **Customer Analysis** → Few high-value customers drive large share of revenue  
+- **High Discounts → Losses** → Need pricing optimization  
+
+---
+
+## 📊 Tools & Libraries Used  
+
+- Python  
+- Pandas  
+- NumPy  
+- Matplotlib  
+- Seaborn  
+
+
+
+
 
 
 
